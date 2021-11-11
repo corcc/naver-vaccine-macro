@@ -10,13 +10,13 @@
     "https://vaccine-map.kakao.com/map"
   ],
   "icons": {
-    "96": "icon96.png"
+    "96": "resources/img/icon96.png"
   },
   "content_scripts": [
     {
       "all_frames": true,
       "js": [
-        "content.js"
+        "js/content.js"
       ],
       "css": [],
       "matches": [
@@ -27,7 +27,7 @@
     {
       "all_frames": true,
       "js": [
-        "map.js"
+        "js/map.js"
       ],
       "css": [],
       "matches": [
@@ -38,7 +38,7 @@
     {
       "all_frames": true,
       "js": [
-        "map_kakao.js"
+        "js/map_kakao.js"
       ],
       "css": [],
       "matches": [
@@ -48,11 +48,11 @@
     }
   ],
   "background": {
-    "page": "background.html"
+    "page": "html/background.html"
   },
-  "web_accessible_resources": ["assets/tada.mp3", "assets/boing.mp3"],
+  "web_accessible_resources": ["assets/resources/sound/tada.mp3", "assets/resources/sound/boing.mp3"],
   "browser_action": {
     "default_title": "NAVER Vaccine MACRO",
-    "default_popup": "popup.html"
+    "default_popup": "html/popup.html"
   }
 }

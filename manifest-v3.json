@@ -12,13 +12,13 @@
     "https://m.place.naver.com/rest/vaccine"
   ],
   "icons": {
-    "96": "icon96.png"
+    "96": "resources/img/icon96.png"
   },
   "content_scripts": [
     {
       "all_frames": true,
       "js": [
-        "content.js"
+        "js/content.js"
       ],
       "css": [],
       "matches": [
@@ -29,7 +29,7 @@
     {
       "all_frames": true,
       "js": [
-        "map.js"
+        "js/map.js"
       ],
       "css": [],
       "matches": [
@@ -39,12 +39,12 @@
     }
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "js/background.js"
   },
   "web_accessible_resources": [
     {
       "resources": [
-        "tada.mp3", "boing.mp3"
+        "resources/sound/tada.mp3", "resources/sound/boing.mp3"
       ],
       "matches": [
         "https://*.naver.com/*"
@@ -53,6 +53,6 @@
   ],
   "action": {
     "default_title": "NAVER Vaccine MACRO",
-    "default_popup": "popup.html"
+    "default_popup": "html/popup.html"
   }
 }

@@ -1,7 +1,7 @@
 const playSound = (param) => {
     let url = 'boing.mp3';
     if (param == "tada")
-        url = 'tada.mp3';
+        url = '/resources/sound/tada.mp3';
 
     // manifest v2
     if (typeof (audio) != "undefined" && audio) {
