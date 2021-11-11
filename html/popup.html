@@ -1,183 +1,93 @@
 <!DOCTYPE html>
-<html lang="ko">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="../css/popup.css">
+<title>NAVER Vaccine MACRO options</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>NAVER Vaccine MACRO options</title>
-    <style>
-        html,
-        body {
-            width: 300px;
-            height: auto;
-            margin: 0;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        .app {
-            padding: 16px;
-        }
-
-        .app-title {
-            margin: 0 0 16px 0;
-        }
-
-
-        label {
-            display: block;
-            font-size: 16px;
-            padding-bottom: 4px;
-            color: rgba(0, 0, 0, .76);
-        }
-
-        input {
-            width: 100%;
-            height: 40px;
-            border-radius: 4px;
-            font-size: 18px;
-            border: 1px solid #dddddd;
-            padding: 0 8px;
-            margin-bottom: 16px;
-        }
-
-        .actions {
-            text-align: right;
-        }
-
-        .button {
-            padding: 0 16px;
-            height: 40px;
-            line-height: 40px;
-            font-size: 14px;
-            border: 1px solid transparent;
-            background-color: rgb(0, 140, 255);
-            color: #ffffff;
-            border-radius: 4px;
-            margin-left: 8px;
-            display: inline-block;
-        }
-
-        #message {
-            height: 40px;
-            color: rgba(0, 0, 0, .76);
-            font-size: 12;
-        }
-
-        ul {
-            list-style:none;
-            padding-inline-start: 0;
-        }
-
-        .radio-toolbar input[type="radio"] {
-            display: inline;
-            width: 40px;
-            margin-bottom: 0px;
-        }
-
-        .radio-toolbar label {
-            display: inline-block;
-            background-color: #eee;
-            padding: 4px 11px;
-            font-family: Arial;
-            font-size: 16px;
-            cursor: pointer;
-            vertical-align: top;
-        }
-
-        .radio-toolbar input[type="radio"]:checked+label {
-            background-color: #bbb;
-        }
-
-        textarea {
-            width:100%;
-            height:100px;
-        }
-
-        .hospital_results {
-            list-style: decimal;
-        }
-        .hospital_results .hospital_item {
-            margin-left: 1em;
-        }
-
-        .hospital_results input {
-            width: auto;
-            height: auto;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="app">
-        <h2 class="app-title">자동 예약 옵션</h2>
-        <div class="form radio-toolbar">
-            <label for="vaccine_list">백신 선택</label>
-            <ul id="vaccine_list">
-                <li>
-                    <input type="radio" id="target_vaccine_all" name="select_vaccine"/>
-                    <label for="target_vaccine_all">아무거나</label>
-                </li>
-                <li>
-                    <input type="radio" id="target_vaccine_0" name="select_vaccine"/>
-                    <label for="target_vaccine_0">아스트라제네카</label>
-                </li>
-                <li>
-                    <input type="radio" id="target_vaccine_1" name="select_vaccine"/>
-                    <label for="target_vaccine_1">얀센</label>
-                </li>
-                <li>
-                    <input type="radio" id="target_vaccine_2" name="select_vaccine"/>
-                    <label for="target_vaccine_2">화이자</label>
-                </li>
-                <li>
-                    <input type="radio" id="target_vaccine_3" name="select_vaccine"/>
-                    <label for="target_vaccine_3">모더나</label>
-                </li>
-            </ul>
-            <label for="interval">새로고침 주기 (ms)</label>
-            <input type="text" id="interval">
-            <label for="reserve_test">test mode (check시 예약 시도 안함, 시도 가능 시점에 텔레그램 통보만)</label>
-            <input type="checkbox" id="reserve_test" name="reserve_test"/>
-        </div>
-        <h2 class="app-title">텔레그램 연동</h2>
-        <div class="form">
-            <label for="bot-token">bot token</label>
-            <input type="text" id="bot-token">
-
-            <label for="chat-id">chat id</label>
-            <input type="text" id="chat-id">
-        </div>
-        <div id="message"></div>
-        <div class="actions">
-            <button type="button" class="button" id="button-reset">초기화</button>
-            <button type="button" class="button" id="button-save">텔레그램 연결</button>
-            <button type="button" class="button" id="button-reload">Reload(개발용)</button>
-        </div>
-        <div><a href="https://m.place.naver.com/rest/vaccine" target="_blank">네이버 플레이스 잔여백신 예약 바로가기</a></div>
-        <div>
-            <label for="graphql_result">graphql result</label>
-            <a href="https://github.com/changdoc/naver-vaccine-macro/issues/11" target="_blank">data 추출방법</a>
-            <textarea id="graphql_result"></textarea>
-            <button type="button" class="button" id="button-extract">병원 목록 생성 및 저장</button>
-        </div>
-        <div>
-            <label for="left_by_count_coords">left_by_count_coords Request Payload</label>
-            <a href="https://github.com/changdoc/naver-vaccine-macro/issues/166" target="_blank">Request Payload 추출방법</a>
-            <textarea id="left_by_count_coords"></textarea>
-            <button type="button" class="button" id="button-save-kakao-body" style="font-size: 10px">left_by_count_coords Request Payload 저장</button>
-        </div>
-        <div>
-            <div id="hospital_results_desc"></div>
-            <ul id="hospital_results" class="hospital_results">
-
-            </ul>
-        </div>
+<body style="background:#242424;">
+  <div class="app" style="padding: 0 16px 0 16px;">
+    <h3 class="app-title">자동 예약 옵션</h3>
+    <div class="form radio-toolbar">
+      <label for="vaccine_list">백신 선택</label>
+      <ul id="vaccine_list">
+        <li>
+          <input type="radio" id="target_vaccine_all" name="select_vaccine" />
+          <label for="target_vaccine_all">아무거나</label>
+        </li>
+        <li>
+          <input type="radio" id="target_vaccine_0" name="select_vaccine" />
+          <label for="target_vaccine_0">아스트라제네카</label>
+        </li>
+        <li>
+          <input type="radio" id="target_vaccine_1" name="select_vaccine" />
+          <label for="target_vaccine_1">얀센</label>
+        </li>
+        <li>
+          <input type="radio" id="target_vaccine_2" name="select_vaccine" />
+          <label for="target_vaccine_2">화이자</label>
+        </li>
+        <li>
+          <input type="radio" id="target_vaccine_3" name="select_vaccine" />
+          <label for="target_vaccine_3">모더나</label>
+        </li>
+      </ul>
+      <label for="interval">새로고침 주기 (ms)</label>
+      <input type="text" id="interval">
+      <ul>
+        <label for="reserve_test">
+          test mode
+          (check시 예약 시도 안함,
+         시도 가능 시점에 텔레그램 통보만)</label>
+        <input type="checkbox" id="reserve_test" name="reserve_test" />
+      </ul>
     </div>
-    <script src="../js/popup.js"></script>
+    <h3 class="app-title">텔레그램 연동</h3>
+    <div class="form">
+      <label for="bot-token">Bot Token</label>
+      <input type="text" id="bot-token">
+      <label for="chat-id">Chat ID</label>
+      <input type="text" id="chat-id">
+    </div>
+    <div id="message"></div>
+    <div class="actions">
+      <button type="button" class="button" id="button-reset">초기화</button>
+      <button type="button" class="button" id="button-save">텔레그램 연결</button>
+      <button type="button" class="button" id="button-reload">Reload(개발용)</button>
+    </div>
+    <div class="button"><a href="https://m.place.naver.com/rest/vaccine" target="_blank">네이버 플레이스 잔여백신 예약 페이지</a></div>
+    <div>
+      <label for="graphql_result">graphql result</label>
+      <div class="button">
+        <a href="https://github.com/changdoc/naver-vaccine-macro/issues/11" target="_blank">
+          data 추출방법
+        </a>
+      </div>
+      <textarea id="graphql_result"></textarea>
+      <button type="button" class="button" id="button-extract">병원 목록 생성 및 저장</button>
+    </div>
+    <div>
+      <label for="left_by_count_coords">left_by_count_coords Request Payload</label>
+      <div class="button">
+        <a href="https://github.com/changdoc/naver-vaccine-macro/issues/166" target="_blank">
+          Request
+          Payload
+          추출방법</a>
+      </div>
+      <textarea id="left_by_count_coords"></textarea>
+      <button type="button" class="button" id="button-save-kakao-body" style="font-size: 10px">
+        left_by_count_coords
+        Request
+        Payload 저장</button>
+    </div>
+    <div>
+      <div id="hospital_results_desc"></div>
+      <ul id="hospital_results" class="hospital_results">
+
+      </ul>
+    </div>
+  </div>
+  <script src="../js/popup.js"></script>
 </body>
 
 </html>

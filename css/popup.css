@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+body{
+   font-family: 'Open Sans',serif;
+}
+html,
+body {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items:center;
+  flex-wrap: wrap;
+  width: 300px;
+  height: auto;
+  margin: 0;
+}
+
+ul,li,div,.actions {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  flex-wrap: wrap;
+}
+label,#message,textarea,input,.button,.app-title{
+  max-width: 300px;
+  width:fit-content;
+  height:fit-content;
+  padding: 1em;
+  border: 0px solid #0000;
+  border-radius: 2em;
+}
+
+ul {
+  list-style:none;
+  padding-inline-start: 0;
+}
+
+a {
+  color: #242424;
+  text-decoration: none;
+}
+label{
+  background: #e0e0e024;
+}
+input,textarea {
+  background: #fff4;
+}
+.app-title {
+  background: #3e3e3e;
+}
+
+
+label {
+  display: block;
+  font-size: 16px;
+}
+
+textarea {
+  width:100%;
+  height:100px;
+}
+
+
+.button {
+  display:flex;
+  
+  padding: 0 16px;
+  max-height: fit-content;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  background: #fff3;
+  color: #ffffffa0;
+}
+
+#message {
+  height:fit-content;
+  max-height: 40px;
+  color: rgba(127, 127, 127, 160);
+  font-size: 12;
+}
+
+.radio-toolbar input[type="radio"] {
+  display: flex;
+  background: #dddddd24;
+  width: 1em;
+  margin-bottom: 0px;
+}
+.radio-toolbar label {
+  display: inline-block;
+  padding: 4px 11px;
+  font-size: 16px;
+  cursor: pointer;
+  vertical-align: top;
+}
+
+.hospital_results {
+  list-style: decimal;
+}
+.hospital_results .hospital_item {
+  margin-left: 1em;
+}
+
+.hospital_results input {
+  width: auto;
+  height: fit-content;
+}
